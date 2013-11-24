@@ -1,0 +1,21 @@
+CREATE TABLE PUBLIC."Jednostka"
+(
+    ID INT PRIMARY KEY NOT NULL,
+    adres INT,
+    nazwa nvarchar(64) NOT NULL,
+    www nvarchar(64),
+    telefon varchar(12),
+    "telOpis" varchar (128),
+    email varchar(64),
+    "godzinyPracy" varchar(128),
+    opis nvarchar (10000) NOT NULL,
+    "infoDodatkowe" nvarchar (1024),
+    specjalizacja1 nvarchar (64),
+    specjalizacja2 nvarchar(64),
+    specjalizacja3 nvarchar (64),
+    "nadrzednaJednostka" int,
+    "podrzedneJednostki" varchar (256),
+    "dataAktualizacji" DATETIME  NOT NULL,
+    lokalizacja varchar(256) NOT NULL,
+);
+
