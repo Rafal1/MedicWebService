@@ -3,8 +3,7 @@ package webengine;
 import java.sql.Connection;
 import java.util.concurrent.atomic.AtomicLong;
 
-import SQLqueries.BaseLoad;
-import SQLqueries.BaseService;
+import sqlqueries.BaseLoad;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;

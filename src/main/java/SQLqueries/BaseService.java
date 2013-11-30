@@ -1,4 +1,4 @@
-package SQLqueries;
+package sqlqueries;
 
 /**
  * @author Rafal Zawadzki
