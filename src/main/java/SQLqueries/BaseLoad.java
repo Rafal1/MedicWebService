@@ -36,7 +36,6 @@ public class BaseLoad {
                     STMque1.close();
                     STMque2.close();
                 } catch (SQLException e) {
-                    System.out.println("Błąd przy kończeniu zapytania tworzenia tabeli");
                     e.printStackTrace();
                 }
             }
@@ -87,7 +86,6 @@ public class BaseLoad {
                     STMque1.close();
                     STMque2.close();
                 } catch (SQLException e) {
-                    System.out.println("Błąd przy kończeniu zapytania tworzenia tabeli");
                     e.printStackTrace();
                 }
             }
