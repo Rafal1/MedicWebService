@@ -1,4 +1,4 @@
-package SQLqueries;
+package sqlqueries;
 
 /**
  * @author Rafal Zawadzki
@@ -10,6 +10,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class BaseLoad {
+
     public static void LoadDataMainAdresy(Connection conn) {
         String que1 =
                 "INSERT INTO MEMBASE.PUBLIC.Adresy VALUES(1, 'Wołoska', 137, '02-507', 'Warszawa', 'wjazd także od ul. Miłobędzkiej')";
@@ -81,7 +82,7 @@ public class BaseLoad {
             System.out.println("Błąd przy przetwarzaniu zapytania");
             e.printStackTrace();
         } finally {
-            if (que1 != null  && que2 != null) {
+            if (que1 != null && que2 != null) {
                 try {
                     STMque1.close();
                     STMque2.close();
@@ -92,4 +93,13 @@ public class BaseLoad {
             }
         }
     }
+
+    public static void LoadDataFirstJednostki(Connection conn){
+        //todo impl kliniki
+    }
+
+    public static void LoadDataSecondJednostki(Connection conn){
+        //todo impl kliniki
+    }
+
 }
