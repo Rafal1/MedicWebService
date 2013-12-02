@@ -17,7 +17,7 @@ public class BaseGetMethods {
     public static ArrayList<Date> getDateColumnJedn(Connection conn, String column) {
         Statement stmt = null;
         ArrayList<Date> resultContainer = new ArrayList<Date>();
-        String query = "select" + "column" + "from " + "PUBLIC.Jednostka";
+        String query = "select " + column + " from " + "PUBLIC.Jednostka";
 
         try {
             stmt = conn.createStatement();
@@ -42,13 +42,41 @@ public class BaseGetMethods {
     public static ArrayList<Integer> getIntColumnJedn(Connection conn, String column) {
         Statement stmt = null;
         ArrayList<Integer> resultContainer = new ArrayList<Integer>();
-        String query = "select" + "column" + "from " + "PUBLIC.Jednostka";
+        String query = "select " + column + " from " + "PUBLIC.Jednostka";
 
         try {
             stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(query);
             while (rs.next()) {
                 resultContainer.add(rs.getInt(column));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return resultContainer;
+    }
+
+    public static ArrayList<String> getStrColumnAdr(Connection conn, String column) {
+        Statement stmt = null;
+
+        ArrayList<String> resultContainer = new ArrayList<String>();
+        // array subscript is the same as ID in database
+
+        String query = "select " + column + " from " + "PUBLIC.Adres";
+
+        try {
+            stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                resultContainer.add(rs.getString(column));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -77,7 +105,7 @@ public class BaseGetMethods {
 //        String Sret = null;
 //        Date Dret = null;
 
-        String query = "select" + "column" + "from " + "PUBLIC.Jednostka";
+        String query = "select " + column + " from " + "PUBLIC.Jednostka";
 
         try {
             stmt = conn.createStatement();
@@ -102,7 +130,7 @@ public class BaseGetMethods {
     public static Integer getIDJednWhere(Connection conn, String params) {
         Statement stmt = null;
         Integer id = null;
-        String query = "select ID" + "from " + "PUBLIC.Jednostka" + "where " + params;
+        String query = "select ID" + " from " + "PUBLIC.Jednostka" + " where " + params;
 
         try {
             stmt = conn.createStatement();
@@ -128,7 +156,7 @@ public class BaseGetMethods {
         Statement stmt = null;
         ArrayList<Jednostka> resJedn = new ArrayList<Jednostka>();
 
-        String query = "select *" + "from " + "PUBLIC.Jednostka" + "where " + params;
+        String query = "select *" + " from " + "PUBLIC.Jednostka" + " where " + params;
 
         try {
             stmt = conn.createStatement();
@@ -167,5 +195,4 @@ public class BaseGetMethods {
         }
         return resJedn;
     }
-
 }
