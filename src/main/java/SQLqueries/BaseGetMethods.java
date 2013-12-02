@@ -13,6 +13,7 @@ import java.util.Date;
  * @author Rafal Zawadzki
  */
 public class BaseGetMethods {
+        //todo limit on fetch rows from data base
 
     public static ArrayList<Date> getDateColumnJedn(Connection conn, String column) {
         Statement stmt = null;
@@ -100,10 +101,7 @@ public class BaseGetMethods {
         ArrayList<String> resultContainer = new ArrayList<String>();
         // array subscript is the same as ID in database
 
-//        todo more types, maybe container
-//        Integer Iret = null;
-//        String Sret = null;
-//        Date Dret = null;
+//        todo more types Integer String Date, maybe container
 
         String query = "select " + column + " from " + "PUBLIC.Jednostka";
 

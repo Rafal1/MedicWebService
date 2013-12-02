@@ -25,7 +25,6 @@ public class MainController {
 
         Connection conn = Application.connectH2Memory();
         //todo mul-iple search in the same units
-        //todo limit on fetch rows
         ArrayList<?> colField;
         ArrayList<Integer> matchesResultID = new ArrayList<Integer>();
         ArrayList<Jednostka> listOfResults = null;
@@ -67,7 +66,6 @@ public class MainController {
 
         String putID = "";
         for (int i = 0; i < matchesResultID.size(); i++) {
-            //todo check if '' are required
             if (i == (matchesResultID.size() - 1)) {
                 putID += "ID=" + matchesResultID.get(i);
                 break;
@@ -75,7 +73,7 @@ public class MainController {
             putID += "ID=" + matchesResultID.get(i) + " OR ";
         }
 
-        if( !putID.isEmpty() ){
+        if (!putID.isEmpty()) {
             listOfResults = BaseGetMethods.getAllJednWhere(conn, putID);
         }
 
