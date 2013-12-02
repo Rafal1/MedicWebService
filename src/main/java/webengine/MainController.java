@@ -17,22 +17,6 @@ import returnobjects.Greeting;
 @Controller
 public class MainController {
 
-    private static final String template = "Hello, %s!";
-    private final AtomicLong counter = new AtomicLong();
-
-    @RequestMapping("/")
-    public
-    @ResponseBody
-    Greeting test(
-            @RequestParam(value = "name", required = false, defaultValue = "World") String name) {
-        Connection conn = Application.connectH2Memory();
-        //BaseLoad.LoadDataAdresy(conn); // adresy
-        //BaseLoad.LoadDataMainJednostki(conn); //jednostki
-        Application.closeConnectionH2Memory(conn);
-        return new Greeting(counter.incrementAndGet(),
-                String.format(template, name));
-    }
-
     @RequestMapping("/search")
     public
     @ResponseBody
@@ -100,15 +84,6 @@ public class MainController {
         return listOfResults;
     }
 
-
-//    @RequestMapping("/")
-//    public
-//    @ResponseBody
-//    boolean ifSpecial(
-//            @RequestParam(value = "attribute", required = true) String att)
-//   {
     //todo przyspieszenie wyszukiwania aby sprawdzal czy zdefinoway zostal typ wprowadzanego stringa
-//       return false;
-//   }
 
 }
