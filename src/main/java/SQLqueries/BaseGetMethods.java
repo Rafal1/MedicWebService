@@ -176,7 +176,7 @@ public class BaseGetMethods {
                 oneRes.setSpecjalizacja3(rs.getString("Specjalizacja3"));
                 oneRes.setNadrzednaJednostka(rs.getInt("nadrzednaJednostka"));
                 oneRes.setPodrzedneJednostki(rs.getString("podrzedneJednostki"));
-                oneRes.setDataAktualizacji(rs.getDate("dataAktualizacji"));
+                oneRes.setDataAktualizacji(rs.getDate("dataAktualizacji").toString()); //todo Date format
                 oneRes.setLokalizacja(rs.getString("Lokalizacja"));
                 resJedn.add(oneRes);
             }

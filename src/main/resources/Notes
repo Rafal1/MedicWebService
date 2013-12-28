@@ -1,0 +1,6 @@
+        Connection conn = Application.connectH2Memory();
+        //BaseLoad.LoadDataAdresy(conn); // adresy
+        //BaseLoad.LoadDataMainJednostki(conn); //jednostki
+        Application.closeConnectionH2Memory(conn);
+
+         private final AtomicLong counter = new AtomicLong(); // samo zwiekszajcy sie counter w webserwisie

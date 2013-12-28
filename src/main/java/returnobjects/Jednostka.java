@@ -21,7 +21,7 @@ public class Jednostka {
     String Specjalizacja3;
     Integer NadrzednaJednostka;
     String PodrzedneJednostki;
-    Date DataAktualizacji;
+    String DataAktualizacji; //todo date format
     String Lokalizacja;
 
     public void setNazwa(String nazwa) {
@@ -76,7 +76,7 @@ public class Jednostka {
         PodrzedneJednostki = podrzedneJednostki;
     }
 
-    public void setDataAktualizacji(Date dataAktualizacji) {
+    public void setDataAktualizacji(String dataAktualizacji) {
         DataAktualizacji = dataAktualizacji;
     }
 
@@ -96,7 +96,7 @@ public class Jednostka {
         return Lokalizacja;
     }
 
-    public Date getDataAktualizacji() {
+    public String getDataAktualizacji() {
         return DataAktualizacji;
     }
 

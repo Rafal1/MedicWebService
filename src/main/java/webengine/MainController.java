@@ -2,17 +2,16 @@ package webengine;
 
 import java.sql.Connection;
 import java.util.ArrayList;
-import java.util.concurrent.atomic.AtomicLong;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import returnobjects.BrakWynikow;
 import returnobjects.Jednostka;
 import sqlqueries.BaseGetMethods;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import returnobjects.Greeting;
 
 @Controller
 public class MainController {
@@ -20,14 +19,14 @@ public class MainController {
     @RequestMapping("/search")
     public
     @ResponseBody
-    ArrayList search(
+    ArrayList<Jednostka> search(
             @RequestParam(value = "phrase", required = true) String phrase) {
 
         Connection conn = Application.connectH2Memory();
         //todo mul-iple search in the same units
         ArrayList<?> colField;
         ArrayList<Integer> matchesResultID = new ArrayList<Integer>();
-        ArrayList<Jednostka> listOfResults = null;
+        ArrayList<Jednostka> listOfResults = new ArrayList<Jednostka>();
 
         colField = BaseGetMethods.getStrColumnJedn(conn, "Nazwa");
         for (Object s : colField) {
@@ -76,12 +75,17 @@ public class MainController {
         if (!putID.isEmpty()) {
             listOfResults = BaseGetMethods.getAllJednWhere(conn, putID);
         }
-
         Application.closeConnectionH2Memory(conn);
-        //if empty - return nothing
-        return listOfResults;
+
+        //todo put to proper place
+        if(listOfResults.isEmpty()){
+            Jednostka lack = new Jednostka();
+            lack.setNazwa("Brak Wynikow");
+            listOfResults.add(lack);
+        }
+
+       return listOfResults;
     }
 
     //todo przyspieszenie wyszukiwania aby sprawdzal czy zdefinoway zostal typ wprowadzanego stringa
-
 }

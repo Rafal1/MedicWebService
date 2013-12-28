@@ -5,6 +5,7 @@
 
     <groupId>org.springframework</groupId>
     <artifactId>gs-rest-service</artifactId>
+    <packaging>jar</packaging>
     <version>0.1.0</version>
 
     <parent>
