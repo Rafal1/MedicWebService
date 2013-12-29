@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import returnobjects.BrakWynikow;
 import returnobjects.Jednostka;
 import sqlqueries.BaseGetMethods;
 import org.springframework.stereotype.Controller;
