@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import returnobjects.Adres;
 import returnobjects.Jednostka;
 import sqlqueries.BaseGetMethods;
 import org.springframework.stereotype.Controller;
@@ -20,6 +21,7 @@ public class MainController {
     @ResponseBody
     ArrayList<Jednostka> search(
             @RequestParam(value = "phrase", required = true) String phrase) {
+        //todo przyspieszenie wyszukiwania aby sprawdzal czy zdefinoway zostal typ wprowadzanego stringa
 
         Connection conn = Application.connectH2Memory();
         //todo mul-iple search in the same units
@@ -77,14 +79,38 @@ public class MainController {
         Application.closeConnectionH2Memory(conn);
 
         //todo put to proper place
-        if(listOfResults.isEmpty()){
+        if (listOfResults.isEmpty()) {
             Jednostka lack = new Jednostka();
             lack.setNazwa("Brak Wynikow");
             listOfResults.add(lack);
         }
 
-       return listOfResults;
+        return listOfResults;
     }
 
-    //todo przyspieszenie wyszukiwania aby sprawdzal czy zdefinoway zostal typ wprowadzanego stringa
+    @RequestMapping("/address")
+    public
+    @ResponseBody
+    Adres getAddress(
+            @RequestParam(value = "adresID", required = true) String adresID) {
+        //todo validation adresID?
+        Connection conn = Application.connectH2Memory();
+        Adres searchedAddr = BaseGetMethods.getAllAddWhere(conn, "ID=" + adresID);
+        //todo null? what in GUI?
+        Application.closeConnectionH2Memory(conn);
+        return searchedAddr;
+    }
+
+    @RequestMapping("/overunit")
+    public
+    @ResponseBody
+    Jednostka getOverUnit(
+            @RequestParam(value = "unitID", required = true) String unitID) {
+        //todo validation unitID?
+        Connection conn = Application.connectH2Memory();
+        Jednostka searchedOverUnit = BaseGetMethods.getNadrzJednWhere(conn, "ID=" + unitID);
+        //todo null? what in GUI?
+        Application.closeConnectionH2Memory(conn);
+        return searchedOverUnit;
+    }
 }

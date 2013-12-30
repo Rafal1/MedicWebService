@@ -1,3 +1,5 @@
+        select column from.... itd - aby sie odwołać bezpośrednio do kolumny to "column" musi być napisana samymi wielkimi literami.
+
         Connection conn = Application.connectH2Memory();
         //BaseLoad.LoadDataAdresy(conn); // adresy
         //BaseLoad.LoadDataMainJednostki(conn); //jednostki
