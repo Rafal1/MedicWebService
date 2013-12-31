@@ -52,7 +52,7 @@ public class BaseLoad {
                         "'Zapraszamy do korzystania z usług Centralnego Szpitala Klinicznego MSW przy ulicy Wołoskiej 137 w Warszawie." +
                         "W naszym działaniu łączymy wieloletnie doświadczenie z najnowszymi osiągnięciami naukowymi. Zatrudniamy wybitnych specjalistów  wielu dziedzin medycyny, którzy w swej pracy wykorzystują nowocześnie wyposażone pracownie diagnostyczne, laboratoria i gabinety lekarskie." +
                         "Posiadamy Polikliniki w Warszawie, Ciechanowie, Płocku, Radomiu, Siedlcach oraz Ośrodki Rehabilitacyjne w Konstancinie i Wesołej." +
-                        "Jesteśmy szpitalem wieloprofilowym, co oznacza, że zapewniamy kompleksową opiekę w całym procesie leczenia – od diagnostyki, do ewentualnej hospitalizacji. Ma to ogromne znaczenie dla komfortu pacjenta i skrócenia czasu pobytu w szpitalu', '', '', '', '', null, null, '" + dateFormat.format(date) +"', null)";
+                        "Jesteśmy szpitalem wieloprofilowym, co oznacza, że zapewniamy kompleksową opiekę w całym procesie leczenia – od diagnostyki, do ewentualnej hospitalizacji. Ma to ogromne znaczenie dla komfortu pacjenta i skrócenia czasu pobytu w szpitalu', 'dodatkowe', 'Spec1', 'Spec2', 'Spec3', '2', null, '" + dateFormat.format(date) +"', null)";
 
         String que2 =
                 "INSERT INTO MEMBASE.PUBLIC.Jednostka " +
