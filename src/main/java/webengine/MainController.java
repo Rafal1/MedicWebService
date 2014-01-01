@@ -28,6 +28,10 @@ public class MainController {
         //todo trivial: minimum 2 signs to search
         //todo przyspieszenie wyszukiwania aby sprawdzal czy zdefinoway zostal typ wprowadzanego stringa
         Connection conn = Application.connectH2Memory();
+//        BaseLoad.loadDataSecondJednostki(conn);
+//        BaseLoad.loadDataFirstJednostki(conn);
+//        BaseLoad.loadDataFirstAdresy(conn);
+//        BaseLoad.loadDataSecondAdresy(conn);
 
 //        ArrayList<?> colField; //if we search for different types
         LinkedHashMap<String, String> colFieldMap = new LinkedHashMap<String, String>();
@@ -111,10 +115,11 @@ public class MainController {
     public
     @ResponseBody
     Adres getAddress(
-            @RequestParam(value = "adresID", required = true) String adresID) {
+            @RequestParam(value = "adresID", required = true) Integer JednID) {
         //todo validation adresID?
         Connection conn = Application.connectH2Memory();
-        Adres searchedAddr = BaseGetMethods.getAllAddWhere(conn, "ID=" + adresID);
+        Integer idAdres = BaseGetMethods.getIDAddrWhereIdJedn(conn, JednID);
+        Adres searchedAddr = BaseGetMethods.getAllAddWhere(conn, "ID=" + idAdres);
         //todo null? what in GUI?
         Application.closeConnectionH2Memory(conn);
         return searchedAddr;

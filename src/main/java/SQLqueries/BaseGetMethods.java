@@ -169,7 +169,7 @@ public class BaseGetMethods {
             while (rs.next()) {
                 Jednostka tmp = new Jednostka();
                 tmp.setNadrzednaJednostka(rs.getInt("nadrzednaJednostka"));
-                partUnit=tmp;
+                partUnit = tmp;
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -197,6 +197,32 @@ public class BaseGetMethods {
             rs.setFetchSize(MAX_FETCH);
             while (rs.next()) { //todo 1result! -> if (now we get the last one
                 id = rs.getInt("ID");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return id;
+    }
+
+    public static Integer getIDAddrWhereIdJedn(Connection conn, Integer param) {
+        Statement stmt = null;
+        Integer id = null;
+        String query = "select Adres" + " from " + "PUBLIC.Jednostka" + " where ID=" + param;
+
+        try {
+            stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            rs.setFetchSize(MAX_FETCH);
+            while (rs.next()) {
+                id = rs.getInt("Adres");
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -264,9 +290,7 @@ public class BaseGetMethods {
                 oneRes.setSpecjalizacja2(rs.getString("Specjalizacja2"));
                 oneRes.setSpecjalizacja3(rs.getString("Specjalizacja3"));
                 oneRes.setNadrzednaJednostka(rs.getInt("nadrzednaJednostka"));
-                oneRes.setPodrzedneJednostki(rs.getString("podrzedneJednostki"));
                 oneRes.setDataAktualizacji(rs.getDate("dataAktualizacji").toString()); //todo Date format
-                oneRes.setLokalizacja(rs.getString("Lokalizacja"));
                 resJedn.add(oneRes);
             }
         } catch (SQLException e) {

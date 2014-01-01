@@ -20,9 +20,7 @@ public class Jednostka {
     String Specjalizacja2;
     String Specjalizacja3;
     Integer NadrzednaJednostka;
-    String PodrzedneJednostki;
     String DataAktualizacji; //todo date format
-    String Lokalizacja;
 
     public void setNazwa(String nazwa) {
         Nazwa = nazwa;
@@ -72,16 +70,8 @@ public class Jednostka {
         NadrzednaJednostka = nadrzednaJednostka;
     }
 
-    public void setPodrzedneJednostki(String podrzedneJednostki) {
-        PodrzedneJednostki = podrzedneJednostki;
-    }
-
     public void setDataAktualizacji(String dataAktualizacji) {
         DataAktualizacji = dataAktualizacji;
-    }
-
-    public void setLokalizacja(String lokalizacja) {
-        Lokalizacja = lokalizacja;
     }
 
     public String getNazwa() {
@@ -92,16 +82,8 @@ public class Jednostka {
         return Www;
     }
 
-    public String getLokalizacja() {
-        return Lokalizacja;
-    }
-
     public String getDataAktualizacji() {
         return DataAktualizacji;
-    }
-
-    public String getPodrzedneJednostki() {
-        return PodrzedneJednostki;
     }
 
     public Integer getNadrzednaJednostka() {
