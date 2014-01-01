@@ -47,4 +47,45 @@ public class MainControllerServiceTest {
 
         assertEquals("''",res);
     }
+
+    @Test
+    public void testBackslashQuotaOne() throws Exception {
+        String one = "he\\j";
+        String res = MainControllerService.backslashQuota(one);
+
+        assertEquals("he\\\\j",res);
+    }
+
+    @Test
+    public void testBackslashQuotaLast() throws Exception {
+        String one = "hej\\";
+        String res = MainControllerService.backslashQuota(one);
+
+        assertEquals("hej\\\\",res);
+    }
+
+    @Test
+    public void testBackslashQuotaFirst() throws Exception {
+        String one = "\\hej";
+        String res = MainControllerService.backslashQuota(one);
+
+        assertEquals("\\\\hej",res);
+    }
+
+    @Test
+    public void testBackslashQuotaMultiple() throws Exception {
+        String one = "\\h\\ej";
+        String res = MainControllerService.backslashQuota(one);
+
+        assertEquals("\\\\h\\\\ej",res);
+    }
+
+    @Test
+    public void testBackslashQuotaAlone() throws Exception {
+        String one = "\\";
+        String res = MainControllerService.backslashQuota(one);
+
+        assertEquals("\\\\",res);
+    }
+
 }

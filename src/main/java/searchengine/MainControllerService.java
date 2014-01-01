@@ -10,7 +10,6 @@ public class MainControllerService {
         for (Integer i = 0; i < s.length(); i++) {
             if (s.charAt(i) == '\'') {
                 tmp += '\'';
-//                    tmp +='\\'; //todo what's right?
             }
             tmp += s.charAt(i);
         }
@@ -20,7 +19,7 @@ public class MainControllerService {
     public static String backslashQuota(String s) {
         String tmp = "";
         for (Integer i = 0; i < s.length(); i++) {
-            if (s.charAt(i) == '\'') {
+            if (s.charAt(i) == '\\') {
                 tmp += '\\';
             }
             tmp += s.charAt(i);

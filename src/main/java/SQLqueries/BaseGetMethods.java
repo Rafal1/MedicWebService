@@ -1,5 +1,6 @@
 package sqlqueries;
 
+import returnobjects.Adres;
 import returnobjects.Jednostka;
 
 import java.sql.Connection;
@@ -13,7 +14,7 @@ import java.util.Date;
  * @author Rafal Zawadzki
  */
 public class BaseGetMethods {
-        //todo limit on fetch rows from data base
+    private static final Integer MAX_FETCH = 150; //todo move to the xml with parameters
 
     public static ArrayList<Date> getDateColumnJedn(Connection conn, String column) {
         Statement stmt = null;
@@ -23,6 +24,7 @@ public class BaseGetMethods {
         try {
             stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(query);
+            rs.setFetchSize(MAX_FETCH);
             while (rs.next()) {
                 resultContainer.add(rs.getDate(column));
             }
@@ -48,6 +50,33 @@ public class BaseGetMethods {
         try {
             stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(query);
+            rs.setFetchSize(MAX_FETCH);
+            while (rs.next()) {
+                resultContainer.add(rs.getInt(column));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return resultContainer;
+    }
+
+    public static ArrayList<Integer> getIntColumnAddr(Connection conn, String column) {
+        Statement stmt = null;
+        ArrayList<Integer> resultContainer = new ArrayList<Integer>();
+        String query = "select " + column + " from " + "PUBLIC.Adres";
+
+        try {
+            stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            rs.setFetchSize(MAX_FETCH);
             while (rs.next()) {
                 resultContainer.add(rs.getInt(column));
             }
@@ -76,6 +105,7 @@ public class BaseGetMethods {
         try {
             stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(query);
+            rs.setFetchSize(MAX_FETCH);
             while (rs.next()) {
                 resultContainer.add(rs.getString(column));
             }
@@ -108,6 +138,7 @@ public class BaseGetMethods {
         try {
             stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(query);
+            rs.setFetchSize(MAX_FETCH);
             while (rs.next()) {
                 resultContainer.add(rs.getString(column));
             }
@@ -125,6 +156,36 @@ public class BaseGetMethods {
         return resultContainer;
     }
 
+    public static Jednostka getNadrzJednWhere(Connection conn, String params) {
+        Statement stmt = null;
+        Jednostka partUnit = null;
+
+        String query = "select " + "NADRZEDNAJEDNOSTKA" + " from " + "PUBLIC.Jednostka" + " where " + params;
+
+        try {
+            stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            rs.setFetchSize(MAX_FETCH);
+            while (rs.next()) {
+                Jednostka tmp = new Jednostka();
+                tmp.setNadrzednaJednostka(rs.getInt("nadrzednaJednostka"));
+                partUnit=tmp;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        //may be null
+        return partUnit;
+    }
+
     public static Integer getIDJednWhere(Connection conn, String params) {
         Statement stmt = null;
         Integer id = null;
@@ -133,7 +194,34 @@ public class BaseGetMethods {
         try {
             stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(query);
-            while (rs.next()) {
+            rs.setFetchSize(MAX_FETCH);
+            while (rs.next()) { //todo 1result! -> if (now we get the last one
+                id = rs.getInt("ID");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return id;
+    }
+
+    public static Integer getIDAddrWhere(Connection conn, String params) {
+        Statement stmt = null;
+        Integer id = null;
+        String query = "select ID" + " from " + "PUBLIC.Adres" + " where " + params;
+
+        try {
+            stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            rs.setFetchSize(MAX_FETCH);
+            while (rs.next()) { //todo 1result! -> if (now we get the last one
                 id = rs.getInt("ID");
             }
         } catch (SQLException e) {
@@ -159,6 +247,7 @@ public class BaseGetMethods {
         try {
             stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(query);
+            rs.setFetchSize(MAX_FETCH);
             while (rs.next()) {
                 Jednostka oneRes = new Jednostka();
                 oneRes.setID(rs.getInt("ID"));
@@ -192,5 +281,42 @@ public class BaseGetMethods {
             }
         }
         return resJedn;
+    }
+
+    public static Adres getAllAddWhere(Connection conn, String params) {
+        Statement stmt = null;
+        Adres resAdr = null;
+        String query = "select *" + " from " + "PUBLIC.Adres" + " where " + params;
+
+        try {
+            stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            rs.setFetchSize(MAX_FETCH);
+            while (rs.next()) {
+                Adres oneRes = new Adres();
+                oneRes.setID(rs.getInt("ID"));
+                oneRes.setUlica(rs.getString("Ulica"));
+                oneRes.setKodPocztowy(rs.getString("KodPocztowy"));
+                oneRes.setDopisek(rs.getString("Dopisek"));
+                oneRes.setMiasto(rs.getString("Miasto"));
+                oneRes.setNrDomu(rs.getString("NrDomu"));
+                resAdr = oneRes;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return resAdr;
+    }
+
+    public static Integer getMaxFetch() {
+        return MAX_FETCH;
     }
 }
