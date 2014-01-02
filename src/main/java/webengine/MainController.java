@@ -28,9 +28,6 @@ public class MainController {
         //todo trivial: minimum 2 signs to search
         //todo przyspieszenie wyszukiwania aby sprawdzal czy zdefinoway zostal typ wprowadzanego stringa
         Connection conn = Application.connectH2Memory();
-//        BaseLoad.LoadDataMainJednostki(conn);
-//        BaseLoad.loadDataSecondJednostki(conn);
-//        BaseLoad.loadDataFirstJednostki(conn);
 
 //        ArrayList<?> colField; //if we search for different types
         LinkedHashMap<String, String> colFieldMap = new LinkedHashMap<String, String>();
