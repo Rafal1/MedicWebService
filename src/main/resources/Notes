@@ -6,3 +6,8 @@
         Application.closeConnectionH2Memory(conn);
 
          private final AtomicLong counter = new AtomicLong(); // samo zwiekszajcy sie counter w webserwisie
+
+         //        BaseLoad.loadDataSecondJednostki(conn);
+         //        BaseLoad.loadDataFirstJednostki(conn);
+         //        BaseLoad.loadDataFirstAdresy(conn);
+         //        BaseLoad.loadDataSecondAdresy(conn);

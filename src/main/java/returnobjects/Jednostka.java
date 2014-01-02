@@ -20,7 +20,7 @@ public class Jednostka {
     String Specjalizacja2;
     String Specjalizacja3;
     Integer NadrzednaJednostka;
-    String DataAktualizacji; //todo date format
+    String DataAktualizacji;
 
     public void setNazwa(String nazwa) {
         Nazwa = nazwa;

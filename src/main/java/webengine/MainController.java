@@ -28,10 +28,9 @@ public class MainController {
         //todo trivial: minimum 2 signs to search
         //todo przyspieszenie wyszukiwania aby sprawdzal czy zdefinoway zostal typ wprowadzanego stringa
         Connection conn = Application.connectH2Memory();
+//        BaseLoad.LoadDataMainJednostki(conn);
 //        BaseLoad.loadDataSecondJednostki(conn);
 //        BaseLoad.loadDataFirstJednostki(conn);
-//        BaseLoad.loadDataFirstAdresy(conn);
-//        BaseLoad.loadDataSecondAdresy(conn);
 
 //        ArrayList<?> colField; //if we search for different types
         LinkedHashMap<String, String> colFieldMap = new LinkedHashMap<String, String>();
@@ -130,11 +129,9 @@ public class MainController {
     @ResponseBody
     Jednostka getOverUnit(
             @RequestParam(value = "unitID", required = true) String unitID) {
-        //todo validation unitID?
         Connection conn = Application.connectH2Memory();
-        Jednostka searchedOverUnit = BaseGetMethods.getNadrzJednWhere(conn, "ID=" + unitID);
-        //todo null? what in GUI?
+        ArrayList<Jednostka> searchedOverUnit = BaseGetMethods.getAllJednWhere(conn, "ID=" + unitID);
         Application.closeConnectionH2Memory(conn);
-        return searchedOverUnit;
+        return searchedOverUnit.get(0);
     }
 }
