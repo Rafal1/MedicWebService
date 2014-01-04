@@ -1,20 +1,18 @@
 package webengine;
 
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import returnobjects.Adres;
+import returnobjects.Jednostka;
+import sqlqueries.BaseGetMethods;
+
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import returnobjects.Adres;
-import returnobjects.Jednostka;
-import searchengine.MainControllerService;
-import sqlqueries.BaseGetMethods;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import sqlqueries.BaseLoad;
 
 @Controller
 public class MainController {

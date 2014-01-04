@@ -290,7 +290,7 @@ public class BaseGetMethods {
                 oneRes.setSpecjalizacja2(rs.getString("Specjalizacja2"));
                 oneRes.setSpecjalizacja3(rs.getString("Specjalizacja3"));
                 oneRes.setNadrzednaJednostka(rs.getInt("nadrzednaJednostka"));
-                oneRes.setDataAktualizacji(rs.getDate("dataAktualizacji").toString()); //todo Date format
+                oneRes.setDataAktualizacji(rs.getString("dataAktualizacji"));
                 resJedn.add(oneRes);
             }
         } catch (SQLException e) {
