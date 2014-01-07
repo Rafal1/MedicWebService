@@ -6,17 +6,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import returnobjects.Adres;
 import returnobjects.Jednostka;
+import searchengine.MainControllerService;
 import sqlqueries.BaseGetMethods;
 
 import java.sql.Connection;
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 @Controller
 public class MainController {
-
+    private static Boolean firstUsage = true;
     @RequestMapping("/search")
     public
     @ResponseBody
@@ -25,9 +25,11 @@ public class MainController {
             @RequestParam(value = "wholeWord", required = false) Boolean wholeWord) {
         //todo przyspieszenie wyszukiwania aby sprawdzal czy zdefinoway zostal typ wprowadzanego stringa
         Connection conn = Application.connectH2Memory();
+        if(firstUsage){
+            MainControllerService.loadInitData(conn);
+            firstUsage=false;
+        }
 
-//        ArrayList<?> colField; //if we search for different types
-        LinkedHashMap<String, String> colFieldMap = new LinkedHashMap<String, String>();
         ArrayList<Integer> colFieldID;
         ArrayList<String> colField;
         ArrayList<Integer> matchesResultID = new ArrayList<Integer>();
