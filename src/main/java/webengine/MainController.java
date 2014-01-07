@@ -23,7 +23,6 @@ public class MainController {
     ArrayList<Jednostka> search(
             @RequestParam(value = "phrase", required = true) String phrase,
             @RequestParam(value = "wholeWord", required = false) Boolean wholeWord) {
-        //todo trivial: minimum 2 signs to search
         //todo przyspieszenie wyszukiwania aby sprawdzal czy zdefinoway zostal typ wprowadzanego stringa
         Connection conn = Application.connectH2Memory();
 

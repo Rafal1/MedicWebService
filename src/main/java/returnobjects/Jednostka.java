@@ -1,11 +1,11 @@
 package returnobjects;
 
-import java.sql.Date;
+import java.io.Serializable;
 
 /**
  * @author Rafal Zawadzki
  */
-public class Jednostka {
+public class Jednostka implements Serializable {
     Integer ID;
     Integer Adres;
     String Nazwa;
