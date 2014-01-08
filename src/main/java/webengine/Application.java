@@ -1,10 +1,12 @@
 package webengine;
 
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
 @ComponentScan
 @EnableAutoConfiguration
@@ -24,7 +26,7 @@ public class Application {
         Connection conn = null;
         try {
             conn = DriverManager.
-                    getConnection("jdbc:h2:~/MemBase", "rafador", "komputer");
+                    getConnection("jdbc:h2:MemBase", "rafador", "komputer");
         } catch (SQLException e) {
             System.out.println("Bład przy połączeniu do bazy H2");
             e.printStackTrace();

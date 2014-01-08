@@ -11,3 +11,13 @@
          //        BaseLoad.loadDataFirstJednostki(conn);
          //        BaseLoad.loadDataFirstAdresy(conn);
          //        BaseLoad.loadDataSecondAdresy(conn);
+
+         //        if(firstUsage){
+         //            MainControllerService.loadInitData(conn);
+         //            firstUsage=false;
+         //        }
+
+
+     //"jdbc:h2:zip:data.zip!/MemBase"   - baza w pliku zip (sprawdzić czy da się bardzo skompresować) trzeba ją dołączyć obok pliku java aplikacji
+http://www.h2database.com/html/faq.html#database_files
+http://h2database.com/html/features.html#database_in_zip

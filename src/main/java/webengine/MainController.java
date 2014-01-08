@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import returnobjects.Adres;
 import returnobjects.Jednostka;
-import searchengine.MainControllerService;
 import sqlqueries.BaseGetMethods;
 
 import java.sql.Connection;
@@ -25,10 +24,6 @@ public class MainController {
             @RequestParam(value = "wholeWord", required = false) Boolean wholeWord) {
         //todo przyspieszenie wyszukiwania aby sprawdzal czy zdefinoway zostal typ wprowadzanego stringa
         Connection conn = Application.connectH2Memory();
-        if(firstUsage){
-            MainControllerService.loadInitData(conn);
-            firstUsage=false;
-        }
 
         ArrayList<Integer> colFieldID;
         ArrayList<String> colField;
